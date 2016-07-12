@@ -17,7 +17,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
+    'images',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -85,6 +88,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+SITE_ID = 1
+
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
@@ -97,4 +102,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
+    'social.backends.facebook.Facebook2OAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.google.GoogleOAuth2',
 )
+
+SOCIAL_AUTH_FACEBOOK_KEY = '867953773311138' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '0716b80931618f444010f7b954c76c07' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_TWITTER_KEY = 'sYmgH0PQECkzrjNHYBF1uFP68' # Twitter Consumer Key
+SOCIAL_AUTH_TWITTER_SECRET = '1KdOsNADldydtEJH0PTPXmZ052e8YBYW2bVQqAU6QZgnotEb5D' # Twitter Consumer Secret
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '178974629739-jgbg6vchvgp2svitbh6if1qono5jfcpo.apps.googleusercontent.com' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NqccD6ls7KgL4gOhOEO4TBd-' # Google Consumer Secret
